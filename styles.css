@@ -1103,6 +1103,8 @@ address { font-style: normal; }
 .contact-card__text { font-size: 15px; line-height: 1.5; color: var(--ink-soft); }
 .contact-card--main .contact-card__text { color: #c9cbd3; }
 .contact-card__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 12px; }
+.contact-card .btn--light { background: #fff; }
+.contact-card .btn--light:hover { background: var(--ink); color: #fff; }
 .contact-card--main .btn { background: #fff; color: var(--ink); box-shadow: none; }
 .contact-card--main .btn--light { background: rgba(255, 255, 255, .12); color: #fff; }
 .contact-card--main .btn--light:hover { background: rgba(255, 255, 255, .22); }
