@@ -591,14 +591,6 @@ address { font-style: normal; }
   border-top: 1px solid rgba(255, 255, 255, .16);
   font-size: clamp(12px, 1.1vw, 15px);
 }
-.footer__reseller {
-  margin-left: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  color: #8f919c;
-}
-.footer__reseller svg { width: 30px; height: 30px; margin-top: -4px; }
 
 /* ===== Внутренние страницы ===== */
 .top--plain .header {
@@ -1378,7 +1370,6 @@ address { font-style: normal; }
   .lightbox__prev, .lightbox__next { top: auto; bottom: 24px; transform: none; }
   .lightbox__prev svg { transform: scaleX(-1); }
   .footer__bottom { flex-direction: column; align-items: flex-start; }
-  .footer__reseller { margin-left: 0; }
   .footer__legal { flex-direction: column; gap: 10px; font-size: 14px; }
   .legal p, .legal li { font-size: 16px; }
 }
