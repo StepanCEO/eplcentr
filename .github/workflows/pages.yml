@@ -1,0 +1,84 @@
+# Публикация сайта на GitHub Pages и ежедневное обновление цен и наличия.
+#  - при каждом push в main сайт просто пересобирается;
+#  - раз в сутки (и по кнопке Run workflow) сначала обновляется data/products.json с сайта поставщика.
+# Наценки и список разделов лежат в секрете репозитория CATALOG_CONFIG (Settings → Secrets → Actions).
+name: Сайт
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 3 * * *'   # 03:00 UTC = 06:00 по Москве (GitHub может запустить с задержкой)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  update-catalog:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Собрать товары, цены и наличие
+        env:
+          CATALOG_CONFIG: ${{ secrets.CATALOG_CONFIG }}
+        run: python3 tools/update_catalog.py
+
+      - name: Сохранить обновлённый каталог
+        run: |
+          if git diff --quiet -- data/products.json; then
+            echo "Каталог не изменился"
+            exit 0
+          fi
+          git config user.name "catalog-bot"
+          git config user.email "catalog-bot@users.noreply.github.com"
+          git add data/products.json
+          git commit -m "Цены и наличие: $(TZ=Europe/Moscow date '+%d.%m.%Y %H:%M')"
+          git push
+
+  build:
+    needs: update-catalog
+    # публикуем, даже если обновление не удалось: тогда на сайте останутся вчерашние цены
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/configure-pages@v5
+
+      - name: Собрать публичные файлы
+        run: |
+          mkdir _site
+          cp *.html styles.css script.js catalog.js _site/
+          cp -r images data _site/
+          touch _site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    if: always() && needs.build.result == 'success'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

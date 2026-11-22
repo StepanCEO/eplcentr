@@ -1,0 +1,8 @@
+# локальные файлы
+.DS_Store
+.claude/
+__pycache__/
+*.tmp
+
+# наценки — только локально и в секрете CATALOG_CONFIG на GitHub
+tools/markup.json

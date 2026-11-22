@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js', 'CSSViewTransitionRule' in window ? 'has-vt' : 'no-vt');window.addEventListener('pagereveal', function () { window.__pageRevealed = true; });</script>
+<title>ЭплЦентр — техника Apple в Пятигорске</title>
+<meta name="description" content="ЭплЦентр — магазин техники Apple в Пятигорске: iPhone, AirPods, Apple Watch, MacBook и аксессуары. Оригинальная продукция, выгодные цены и гарантия качества.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- переходы между страницами объявлены прямо здесь: из внешнего styles.css Chrome подхватывает их через раз -->
+<style>@view-transition { navigation: auto; }</style>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== SVG-спрайт: логотип и иконки ===== -->
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <!-- Логотип -->
+  <symbol id="i-logo" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M15.6 2c.2 1.7-1.4 3.6-3.2 3.6-.3-1.7 1.4-3.5 3.2-3.6zM12.2 7.6c1 0 2-.9 3.6-.9 1.4 0 2.7.7 3.5 1.9-2.9 1.7-2.4 5.7.6 6.9-.6 1.6-1.5 3.2-2.6 4.5-.8.9-1.6 1.8-2.8 1.8s-1.6-.7-3-.7-1.9.7-3 .7c-1.2 0-2.1-1-2.9-2C3.6 16.400 2.600 11.900 4.400 9.100c.9-1.4 2.400-2.300 4-2.300 1.500 0 2.500.800 3.800.800z"/>
+  </symbol>
+
+  <!-- Иконки -->
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></g></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.500 4h2.700l2.300 11h10.300l2-7.500H6.300"/><circle cx="9" cy="19.500" r="1.400"/><circle cx="17" cy="19.500" r="1.400"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.500" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.500 2.800v5.400c0 4.600-3.100 8-7.500 9.800-4.400-1.800-7.500-5.200-7.500-9.800V5.800z"/><path d="M8.800 12.200l2.300 2.300 4.300-4.600"/></g></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.500" stroke-linecap="round" stroke-linejoin="round"><path d="M2.500 5.500h11v11h-11zM13.500 9.500h4.300l3.700 3.800v3.200h-8"/><circle cx="7" cy="17.500" r="1.900"/><circle cx="17" cy="17.500" r="1.900"/></g></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.500" stroke-linecap="round" stroke-linejoin="round"><path d="M4.500 13.500V12a7.500 7.500 0 0 1 15 0v1.500"/><rect x="3" y="12.500" width="4" height="6" rx="1.800"/><rect x="17" y="12.500" width="4" height="6" rx="1.800"/><path d="M19.500 18.500c0 1.800-1.700 2.800-4.500 2.800h-2"/></g></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.500" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.500s7-6.300 7-11.700a7 7 0 0 0-14 0c0 5.400 7 11.700 7 11.700z"/><circle cx="12" cy="9.800" r="2.600"/></g></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M7.300 3.200 9.700 3c.5 0 .9.300 1 .700l.9 3.300c.1.400 0 .800-.300 1.100L9.800 9.600c1 2 2.600 3.600 4.600 4.600l1.500-1.500c.300-.300.700-.400 1.100-.300l3.300.900c.400.100.700.500.700 1l-.200 2.400c-.100 1.300-1.200 2.300-2.500 2.200C10.600 18.400 5.600 13.400 5.100 5.700 5 4.400 6 3.300 7.300 3.200z"/></symbol>
+  <symbol id="i-telegram" viewBox="0 0 24 24"><path fill="currentColor" d="M20.300 4.300 3.600 10.800c-.700.300-.700 1.200 0 1.400l4.200 1.400 1.600 5c.200.600.900.700 1.300.300l2.300-2.300 4.200 3.100c.500.300 1.100.100 1.300-.500l3-13.800c.200-.800-.500-1.400-1.200-1.100zm-3 3.300-6.600 6-.300 3-1.200-3.700 8.100-5.300z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7.500h16M4 12h16M4 16.500h16" fill="none" stroke="currentColor" stroke-width="1.700" stroke-linecap="round"/></symbol>
+
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.2a9.7 9.7 0 0 0-8.300 14.700L2.400 21.800l5-1.300A9.700 9.700 0 1 0 12 2.200zm0 17.700c-1.500 0-2.900-.400-4.100-1.100l-.300-.200-3 .800.800-2.900-.200-.300A8 8 0 1 1 12 19.900zm4.400-6c-.200-.100-1.400-.700-1.700-.800-.200-.100-.400-.100-.500.100l-.800 1c-.100.200-.300.200-.500.100a6.600 6.600 0 0 1-3.300-2.900c-.200-.400.200-.400.700-1.300.100-.200 0-.300 0-.400l-.800-1.800c-.200-.500-.400-.400-.500-.400h-.500a.9.900 0 0 0-.700.300 2.800 2.800 0 0 0-.900 2.100c0 1.200.900 2.400 1 2.600.100.200 1.800 2.700 4.300 3.800 1.600.700 2.200.700 3 .600.500-.100 1.400-.600 1.600-1.200.200-.600.200-1.100.100-1.200l-.500-.300z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.500" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.500"/><path d="M12 7.500V12l3 2"/></g></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3.300l2.600 5.400 5.900.800-4.300 4.100 1 5.800L12 16.600l-5.200 2.800 1-5.800L3.500 9.500l5.900-.800z"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.500" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.200"/><circle cx="18" cy="6" r="2.200"/><path d="M8.200 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.800"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.500l4.300 4.300L19 7.200" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-bus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.500" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3.500" width="14" height="14" rx="3"/><path d="M5 11h14M8 17.500V20M16 17.500V20"/><circle cx="8.500" cy="14.300" r=".600" fill="currentColor"/><circle cx="15.500" cy="14.300" r=".600" fill="currentColor"/></g></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.500v13l10.500-6.500z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round"/></symbol>
+</svg>
+
+<!-- ===== Шапка + первый экран ===== -->
+<div class="top">
+  <header class="header">
+    <div class="container header__row">
+      <a class="logo" href="index.html" aria-label="ЭплЦентр — на главную">
+        <span>ЭплЦентр</span><svg class="logo__mark"><use href="#i-logo"/></svg>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Основное меню">
+        <a href="catalog.html">Каталог</a>
+        <a href="about.html">О магазине</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+
+      <div class="header__tools">
+        <a class="icon-btn" href="catalog.html?search" aria-label="Поиск по каталогу"><svg><use href="#i-search"/></svg></a>
+        <span class="header__sep" aria-hidden="true"></span>
+        <a class="header__phone" href="tel:+79188888077" aria-label="Позвонить: +7 (918) 888-80-77"><svg><use href="#i-phone"/></svg><span>+7 (918) 888-80-77</span></a>
+        <button class="icon-btn burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="nav"><svg><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" aria-roledescription="карусель" aria-label="Предложения магазина">
+    <div class="hero__bg" aria-hidden="true"></div>
+
+    <div class="slide is-active">
+      <span class="slide__glow" aria-hidden="true"></span>
+      <img class="slide__photo slide__photo--product" src="images/hero-iphone-18-pro.jpg" alt="">
+      <div class="container slide__inner">
+        <div class="slide__text">
+          <h1 class="hero__title">Техника Apple<br>в Пятигорске</h1>
+          <p class="hero__sub">Оригинальная продукция, <br>выгодные цены и гарантия качества</p>
+          <a class="btn" href="catalog.html#iphone">Перейти к каталогу <svg><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" aria-hidden="true">
+      <img class="slide__photo slide__photo--fit" data-home-img="mac:macbook-air|mac" alt="">
+      <div class="container slide__inner">
+        <div class="slide__text">
+          <h2 class="hero__title">MacBook Air</h2>
+          <p class="hero__sub" data-home-price="mac:macbook-air|mac">В наличии в Пятигорске</p>
+          <a class="btn" href="catalog.html#mac/macbook-air" tabindex="-1">Смотреть MacBook <svg><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" aria-hidden="true">
+      <img class="slide__photo slide__photo--fit" data-home-img="iwatch" alt="">
+      <div class="container slide__inner">
+        <div class="slide__text">
+          <h2 class="hero__title">Apple Watch</h2>
+          <p class="hero__sub" data-home-price="iwatch">В наличии в Пятигорске</p>
+          <a class="btn" href="catalog.html#iwatch" tabindex="-1">Смотреть часы <svg><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dots" role="tablist" aria-label="Слайды">
+      <button class="dot is-active" type="button" role="tab" aria-selected="true" aria-label="Слайд 1: техника Apple"></button>
+      <button class="dot" type="button" role="tab" aria-selected="false" aria-label="Слайд 2: MacBook Air"></button>
+      <button class="dot" type="button" role="tab" aria-selected="false" aria-label="Слайд 3: Apple Watch"></button>
+    </div>
+  </section>
+</div>
+
+<main>
+  <!-- ===== Категории ===== -->
+  <section class="section section--cats" id="catalog" aria-label="Категории">
+    <div class="container cats">
+      <a class="cat" href="catalog.html#iphone"><img class="cat__img" data-home-img="iphone:iphone-18-pro|iphone" alt=""><span class="cat__row">iPhone <svg><use href="#i-chevron"/></svg></span></a>
+      <a class="cat" href="catalog.html#airpods"><img class="cat__img" data-home-img="airpods" alt=""><span class="cat__row">AirPods <svg><use href="#i-chevron"/></svg></span></a>
+      <a class="cat" href="catalog.html#iwatch"><img class="cat__img" data-home-img="iwatch" alt=""><span class="cat__row">Apple Watch <svg><use href="#i-chevron"/></svg></span></a>
+      <a class="cat" href="catalog.html#mac"><img class="cat__img" data-home-img="mac:macbook-air|mac" alt=""><span class="cat__row">MacBook <svg><use href="#i-chevron"/></svg></span></a>
+      <a class="cat" href="catalog.html#aksessuary"><img class="cat__img" data-home-img="aksessuary:besprovodnye-zaryadnye-ustroystva|aksessuary" alt=""><span class="cat__row">Аксессуары <svg><use href="#i-chevron"/></svg></span></a>
+    </div>
+  </section>
+
+  <!-- ===== Популярные товары ===== -->
+  <section class="section" id="popular" data-popular>
+    <div class="container">
+      <div class="section__head">
+        <h2 class="section__title">Популярные товары</h2>
+        <a class="more" href="catalog.html">Все товары <svg><use href="#i-arrow"/></svg></a>
+      </div>
+
+      <div class="products" data-popular-grid></div>
+    </div>
+  </section>
+
+  <!-- ===== Баннер AirPods Max ===== -->
+  <section class="section section--banner" aria-labelledby="banner-title">
+    <div class="container">
+      <div class="banner">
+        <div class="banner__text">
+          <h2 class="banner__title" id="banner-title">AirPods Max</h2>
+          <p class="banner__sub">Погружение в звук<br>на новом уровне</p>
+          <p class="banner__price" data-home-price="airpods:airpods-max"></p>
+          <a class="btn btn--sm" href="catalog.html#airpods/airpods-max">Смотреть AirPods Max <svg><use href="#i-arrow"/></svg></a>
+        </div>
+        <img class="banner__img banner__img--product" data-home-img="airpods:airpods-max" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Преимущества ===== -->
+  <section class="section section--features" id="about" aria-label="Преимущества магазина">
+    <div class="container features">
+      <div class="feature"><svg><use href="#i-shield"/></svg><p>Оригинальная<br>продукция</p></div>
+      <div class="feature"><svg><use href="#i-truck"/></svg><p>Быстрая<br>доставка</p></div>
+      <div class="feature"><svg><use href="#i-headset"/></svg><p>Поддержка<br>24/7</p></div>
+      <div class="feature"><svg><use href="#i-pin"/></svg><p>Магазин<br>в Пятигорске</p></div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== Подвал ===== -->
+<footer class="footer" id="contacts">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="logo logo--light" href="index.html" aria-label="ЭплЦентр — на главную">
+          <span>ЭплЦентр</span><svg class="logo__mark"><use href="#i-logo"/></svg>
+        </a>
+        <p>Ваш надёжный магазин<br>техники Apple</p>
+      </div>
+
+      <nav class="footer__col" aria-label="Каталог">
+        <h3>Каталог</h3>
+        <a href="catalog.html#iphone">iPhone</a>
+        <a href="catalog.html#airpods">AirPods</a>
+        <a href="catalog.html#iwatch">Apple Watch</a>
+        <a href="catalog.html#mac">MacBook</a>
+        <a href="catalog.html#aksessuary">Аксессуары</a>
+      </nav>
+
+      <nav class="footer__col footer__col--info" aria-label="Информация">
+        <h3>Информация</h3>
+        <a href="about.html">О магазине</a>
+        <a href="contacts.html">Контакты</a>
+        <a href="terms.html">Гарантия и возврат</a>
+        <a href="about.html#reviews">Отзывы</a>
+      </nav>
+
+      <div class="footer__col footer__contacts">
+        <h3>Мы на связи</h3>
+        <div class="social">
+          <a href="https://t.me/+79188888077" target="_blank" rel="noopener" aria-label="Написать в Telegram"><svg><use href="#i-telegram"/></svg></a>
+          <a href="https://wa.me/79188888077" target="_blank" rel="noopener" aria-label="Написать в WhatsApp"><svg><use href="#i-whatsapp"/></svg></a>
+        </div>
+        <a class="footer__phone" href="tel:+79188888077"><svg><use href="#i-phone"/></svg>+7 (918) 888-80-77</a>
+        <address>г. Пятигорск, просп. Кирова, 70Б<br>Ежедневно 9:00–20:00</address>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© 2026 ЭплЦентр. Все права защищены.</p>
+      <nav class="footer__legal" aria-label="Правовая информация">
+        <a href="privacy.html">Политика конфиденциальности</a>
+        <a href="cookies.html">Политика использования cookie</a>
+        <a href="terms.html">Пользовательское соглашение</a>
+      </nav>
+      <p class="footer__reseller"><svg><use href="#i-logo"/></svg>Официальный реселлер Apple</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="catalog.js"></script>
+</body>
+</html>
