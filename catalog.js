@@ -92,9 +92,21 @@
   }
 
   /* ----- Карточка товара ----- */
+  var suppressEnter = false;  // во время плавной смены карточек своя анимация появления не нужна
+
+  // Имена для view transitions даём карточкам только на время смены фильтра:
+  // одинаковые товары плавно переезжают на новые места, а переходам между страницами имена не мешают.
+  function nameCard(card, on) {
+    card.style.viewTransitionName = on ? 'p-' + String(card.getAttribute('data-id')).replace(/[^a-zA-Z0-9_-]/g, '') : '';
+    if (on) card.style.setProperty('view-transition-class', 'card');
+    else card.style.removeProperty('view-transition-class');
+  }
+
   function renderCard(product, index) {
-    var card = el('article', 'product product--live');
+    var card = el('article', 'product product--live' + (suppressEnter ? ' no-enter' : ''));
     card.style.setProperty('--i', String(index % PAGE_SIZE));
+    card.setAttribute('data-id', product.id);
+    if (suppressEnter) nameCard(card, true);
 
     if (product.badge) card.appendChild(el('span', 'badge badge--new', product.badge));
 
@@ -263,7 +275,7 @@
           search.value = '';
           state.shown = PAGE_SIZE;
           writeHash();
-          render();
+          transitionRender();
         }, false, state.inStock ? c.available : c.count));
       });
 
@@ -276,14 +288,14 @@
         state.subcategory = '';
         state.shown = PAGE_SIZE;
         writeHash();
-        render();
+        transitionRender();
       }, true));
       subs.forEach(function (s) {
         subsBox.appendChild(chip(s.title, s.slug === state.subcategory, function () {
           state.subcategory = s.slug;
           state.shown = PAGE_SIZE;
           writeHash();
-          render();
+          transitionRender();
         }, true));
       });
     }
@@ -310,6 +322,29 @@
       if (mod10 === 1 && mod100 !== 11) return one;
       if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return few;
       return many;
+    }
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Смена раздела, модели, поиска или «в наличии»: старые карточки гаснут, общие переезжают, новые выезжают
+    function transitionRender() {
+      if (!document.startViewTransition || reduceMotion || !grid.children.length) {
+        render();
+        return;
+      }
+      var root = document.documentElement;
+      root.classList.add('vt-filter');
+      Array.prototype.forEach.call(grid.children, function (card) { nameCard(card, true); });
+      var transition = document.startViewTransition(function () {
+        suppressEnter = true;
+        render();
+        suppressEnter = false;
+      });
+      var cleanup = function () {
+        root.classList.remove('vt-filter');
+        Array.prototype.forEach.call(grid.children, function (card) { nameCard(card, false); });
+      };
+      transition.finished.then(cleanup, cleanup);
     }
 
     function render() {
@@ -341,14 +376,14 @@
       searchTimer = setTimeout(function () {
         state.query = search.value.trim();
         state.shown = PAGE_SIZE;
-        render();
+        transitionRender();
       }, 180);
     });
 
     inStock.addEventListener('change', function () {
       state.inStock = inStock.checked;
       state.shown = PAGE_SIZE;
-      render();
+      transitionRender();
     });
 
     window.addEventListener('hashchange', function () {
@@ -357,7 +392,7 @@
       state.query = '';
       search.value = '';
       state.shown = PAGE_SIZE;
-      render();
+      transitionRender();
     });
 
     if (/[?&](search|q)(=|&|$)/.test(window.location.search)) {

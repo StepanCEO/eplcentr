@@ -268,4 +268,59 @@
       if (event.key === 'ArrowRight') showPhoto(lbIndex + 1);
     });
   }
+
+  /* ----- Шапка: компактная и полупрозрачная при прокрутке ----- */
+  var header = document.querySelector('.header');
+  var toTop = null;
+  var scrollTicking = false;
+
+  function onScroll() {
+    var y = window.scrollY || window.pageYOffset;
+    if (header) header.classList.toggle('is-scrolled', y > 24);
+    if (toTop) toTop.classList.toggle('is-visible', y > window.innerHeight * 1.2);
+    scrollTicking = false;
+  }
+
+  /* ----- Кнопка «Наверх» ----- */
+  toTop = document.createElement('button');
+  toTop.type = 'button';
+  toTop.className = 'to-top';
+  toTop.setAttribute('aria-label', 'Наверх');
+  toTop.innerHTML = '<svg aria-hidden="true"><use href="#i-arrow"/></svg>';
+  toTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+  document.body.appendChild(toTop);
+
+  window.addEventListener('scroll', function () {
+    if (!scrollTicking) {
+      scrollTicking = true;
+      window.requestAnimationFrame(onScroll);
+    }
+  }, { passive: true });
+  onScroll();
+
+  /* ----- Наклон iPhone на главном экране за курсором (только мышь) ----- */
+  var tiltImg = document.querySelector('.slide__photo--product');
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (hero && tiltImg && finePointer && !reduceMotion) {
+    var tiltFrame = null;
+    var MAX_X = 7;   // градусы наклона вверх-вниз
+    var MAX_Y = 10;  // градусы поворота влево-вправо
+    hero.addEventListener('mousemove', function (event) {
+      if (tiltFrame) return;
+      tiltFrame = window.requestAnimationFrame(function () {
+        tiltFrame = null;
+        var rect = hero.getBoundingClientRect();
+        var x = (event.clientX - rect.left) / rect.width - 0.5;
+        var y = (event.clientY - rect.top) / rect.height - 0.5;
+        tiltImg.style.setProperty('--tilt-x', (-y * MAX_X * 2).toFixed(2) + 'deg');
+        tiltImg.style.setProperty('--tilt-y', (x * MAX_Y * 2).toFixed(2) + 'deg');
+      });
+    });
+    hero.addEventListener('mouseleave', function () {
+      tiltImg.style.setProperty('--tilt-x', '0deg');
+      tiltImg.style.setProperty('--tilt-y', '0deg');
+    });
+  }
 })();
